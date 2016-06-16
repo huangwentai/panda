@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta charset="UTF-8">
+	<title>panda</title>
+	</head>
+	<body>
+	<canvas id="canvas" width="320" height="480"></canvas>
+</body>
+<style type="text/css">
+	html,body{padding:0;margin:0;width:100%;height:100%;overflow:hidden;}
+#canvas{position:relative;background-color:#fff;display:block;}
+</style>
+ <script src="zepto.min.js"></script>
+  <script src="touch.js"></script>
+<script>
+//alert("hnty");
+// document.body.addEventListener('touchstart', function(e) { 
+// 	var touch = event.touches[0];
+//          console.log(touch.pageX +"-----"+touch.pageY);
+//          } )  
+// $("body").on("click",function(e){
+// 	//alert("ashus");
+// 	console.log(e.pageX+"-----"+e.pageY);
+// })  
+var canvas = document.getElementById("canvas"),
+    ctx=canvas.getContext("2d"),
+    startX,
+    startY,
+    moveX,
+    moveY;
+canvas.addEventListener("touchstart", touchstart, false);     
+canvas.addEventListener("touchmove", touchmove, false); 
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+ 
+function touchstart(event) {
+    //阻止网页默认动作（即网页滚动）
+    event.preventDefault();
+    //if (spirit || !event.touches.length) return;
+    var touch = event.touches[0];
+    startX = touch.pageX;
+    startY = touch.pageY;
+    ctx.beginPath();
+    console.log(startX+"----"+startY);
+           ctx.moveTo(startX,startY); 
+           ctx.lineCap="round";
+           ctx.lineWidth = 7; 
+           ctx.strokeStyle = "green";          
+}
+
+function touchmove(event) {
+    //阻止网页默认动作（即网页滚动）
+    event.preventDefault();
+    //if (spirit || !event.touches.length) return;
+    var touch = event.touches[0];
+    moveX = touch.pageX;
+    moveY = touch.pageY;
+    console.log(startX+"----"+startY);
+           ctx.lineTo(moveX,moveY); 
+           ctx.stroke();              
+}
+
+
+     </script>
+	
+</html>
